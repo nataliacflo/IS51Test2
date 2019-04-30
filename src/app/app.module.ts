@@ -13,13 +13,17 @@ import { MaterialDesignModule } from '../material-design/material-design.module'
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { HomeComponent } from './home/home.component';
 import { TestScoreComponent } from './test-score/test-score.component';
+import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainNavComponent,
     HomeComponent,
-    TestScoreComponent
+    TestScoreComponent,
+    ContactComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
