@@ -49,8 +49,8 @@
       </mat-card-content>
       <mat-card-actions>
         <div class="btn-group pull-right">
-          <button mat-raised-button color="primary" class="pull-right">Save</button>
-          <button mat-raised-button color="warn">Delete</button>
+          <button mat-raised-button color="primary" (click)="savetoLocalStorage()" class="pull-right">Save</button>
+          <button mat-raised-button color="warn" (click)="deleteTest(i)">Delete</button>
         </div>
       </mat-card-actions>
     </mat-card>

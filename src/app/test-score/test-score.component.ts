@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Test } from './test.model';
 import { Http } from '@angular/http';
+import { LocalStorageService } from '../localStorageService';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { ToastService } from '../toast/toast.service';
-import { isDefaultChangeDetectionStrategy } from '@angular/core/src/change_detection/constants';
-import { serializePath } from '@angular/router/src/url_tree';
-import { SelectorMatcher } from '@angular/compiler';
-import { PARAMETERS } from '@angular/core/src/util/decorators';
 
 export interface ITest {
   id?: number;
@@ -65,27 +63,27 @@ export class TestScoreComponent implements OnInit {
     this.tests.unshift(test);
     this.savetoLocalStorage();
   }
-}
 
-deleteTest(index: number) {
-  this.test.splice(index, 1);
-  this.savetoLocalStorage();
-}
 
-savetoLocalStorage() {
-  localStorage.setItem('contacts', JSON.stringify(this.tests));
-}
+  deleteTest(index: number) {
+    this.tests.splice(index, 1);
+    this.savetoLocalStorage();
+  }
 
-computeGrade() {
-  const data = this.calculate();
-  localStorage.setItem('calculatedData', JSON.stringify(data));
-  this.router.navigate(['home', data]);
-}
+  savetoLocalStorage() {
+    localStorage.setItem('contacts', JSON.stringify(this.tests));
+  }
 
-calculate() {
-  let grade = 0;
-  for (let i = 0; i < this.tests.length; i++) {
-    grade += this.tests[i].grade;
+  computeGrade() {
+    const data = this.calculate();
+    localStorage.setItem('calculatedData', JSON.stringify(data));
+    this.router.navigate(['home', data]);
+  }
+
+  calculate() {
+    let grade = 0;
+    for (let i = 0; i < this.tests.length; i++) {
+      grade += this.tests[i].grade;
   }
   return {
     pointsPossible: this.tests.length,
@@ -97,7 +95,7 @@ calculate() {
 
 search(params: string) {
   this.tests = this.tests.filter((tests: ITest) => {
-    return tests.firstName.toLowerCase() === params.toLowerCase()
+    return tests.testName.toLowerCase() === params.toLowerCase();
   });
 }
 }
